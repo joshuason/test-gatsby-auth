@@ -1,3 +1,8 @@
+// import { useAuth0 } from "@auth0/auth0-react"
+
+// const { logout } = useAuth0();
+
+
 export const isBrowser = () => typeof window !== "undefined"
 
 export const getUser = () =>
@@ -27,7 +32,17 @@ export const isLoggedIn = () => {
   return !!user.username
 }
 
-export const logout = callback => {
+export const logoutOriginal = callback => {
   setUser({})
   callback()
 }
+
+// ---
+
+// const handleAuth0Login = () => {
+//   const { loginWithRedirect } = useAuth0();
+// }  
+
+// export const auth0Logout = () => {
+//   logout({ returnTo: window.location.origin })
+// }

@@ -1,14 +1,19 @@
 import React from 'react'
 import { Link, navigate } from 'gatsby'
 import { getUser, isLoggedIn, logout } from '../services/auth'
+import { useAuth0 } from "@auth0/auth0-react"
 
 const NavBar = () => {
+
+  const { logout: logoutWithAuth0, isAuthenticated, user } = useAuth0();
+  
   let greetingMessage = ""
-  if (isLoggedIn()) {
-    greetingMessage = `Hello ${getUser().name}`
+  if (isLoggedIn() || isAuthenticated) {
+    greetingMessage = `Hello ${getUser().name || user.name}`
   } else {
     greetingMessage = "You are not logged in"
   }
+
   return (
     <div
       className="NavBar"
@@ -26,12 +31,12 @@ const NavBar = () => {
         {' '}
         <Link to="/app/profile">Profile</Link>
         {' '}
-        {isLoggedIn() && (
+        {/*isLoggedIn()*/ isAuthenticated && (
           <a
             href="/"
             onClick={event => {
-              event.preventDefault()
-              logout(() => navigate(`/app/login`))
+              event.preventDefault();
+              logoutWithAuth0({ returnTo: window.location.origin });
             }}
           >
             Logout
