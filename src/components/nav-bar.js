@@ -31,6 +31,7 @@ const NavBar = () => {
         {' '}
         <Link to="/app/profile">Profile</Link>
         {' '}
+        <Link to="/app/external-api">External API</Link>
         {/*isLoggedIn()*/ isAuthenticated && (
           <a
             href="/"

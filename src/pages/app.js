@@ -7,6 +7,7 @@ import Login from '../components/login'
 // import { Auth0Provider } from '@auth0/auth0-react'
 import LoginAuth0Button from '../components/loginAuth0'
 import { render } from 'react-dom'
+import ExternalApi from '../components/external-api'
 
 const NotFound = () => <p>Sorry, nothing here</p>
 
@@ -40,6 +41,7 @@ const App = () => (
     <Layout>
       <Router>
         <PrivateRoute path="/app/profile" component={Profile} />
+        <PrivateRoute path="/app/external-api" component={ExternalApi} />
         {/* <Login path="/app/login" /> */}
         <LoginAuth0Button path="/app/login/" />
         <NotFound default />
